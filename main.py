@@ -59,7 +59,7 @@ def main():
 
             content = r.text.strip().lower()
             if r.ok and r.text.strip() and content and not any(b in content for b in bad_keywords):
-                print(f"[+] /proc/{i}/cmdline -> {r.text[:200]}")
+                print(f"\n[+] /proc/{i}/cmdline -> {r.text[:200]}")
             else:
                 print(f"\r[-] /proc/{i}/cmdline -> No data", end="")
 
