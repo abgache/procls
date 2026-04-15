@@ -1,6 +1,8 @@
 # ProcLS
 ### The first program you should launch after finding an LFI.
 
+[![Python](https://img.shields.io/badge/python-3.10%2B-blue)](https://www.python.org/)  
+
 ## What is it?
 It's a simple python that:  
 - Checks that the LFI is working : it tries to get ``/etc/passwd`` and checks that it starts with ``root:x:``  
