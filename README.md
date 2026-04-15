@@ -22,6 +22,7 @@ Usage: ```procls <target> [-p PORT] [-s PATH] [--max MAX] [--param PARAM]```
 ## License  
 ### ProcLS License (PL-1.0)  
 > Copyright (c) 2026 Abgache  
+
 Permission is hereby granted to use, copy, modify, and distribute this software for personal, educational, and security research purposes, subject to the following conditions:  
 1. Do not use this software for illegal activities.  
 2. Do not claim it as your own work without credit.  
