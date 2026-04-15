@@ -27,4 +27,5 @@ Permission is hereby granted to use, copy, modify, and distribute this software 
 1. Do not use this software for illegal activities.  
 2. Do not claim it as your own work without credit.  
 3. If you break it, you fix it yourself.  
+
 **THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND.**  
