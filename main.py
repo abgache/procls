@@ -1,10 +1,15 @@
 #!/usr/bin/env python3
 import requests
 import argparse
-from sys import argv
 
 def print_banner():
-    banner = f"""  _____                _       _____ \n |  __ \              | |     / ____|\n | |__) | __ ___   ___| |    | (___  \n |  ___/ '__/ _ \ / __| |     \___ \ \n | |   | | | (_) | (__| |____ ____) |\n |_|   |_|  \___/ \___|______|_____/\n"""
+    banner = r"""      _____                _       _____ 
+     |  __ \              | |     / ____|
+     | |__) | __ ___   ___| |    | (___  
+     |  ___/ '__/ _ \ / __| |     \___ \ 
+     | |   | | | (_) | (__| |____ ____) |
+     |_|   |_|  \___/ \___|______|_____/
+         """
     credit = f"{' ' * 25}By Abgache\n"
     print(banner, end="")
     print(credit)
@@ -63,8 +68,4 @@ def main():
 
 if __name__ == "__main__":
     print_banner()
-    if "--help" in argv or "-h" in argv:
-        print("Usage: procls <target> [-p PORT] [-s PATH] [--max MAX] [--param PARAM]")
-        print("Example: procls example.com -p 80 -s index.php ")
-        exit(0)
     main()
