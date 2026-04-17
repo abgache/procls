@@ -10,7 +10,8 @@ def print_banner():
      | |   | | | (_) | (__| |____ ____) |
      |_|   |_|  \___/ \___|______|_____/
          """
-    credit = f"{' ' * 25}By Abgache\n"
+    version = "1.0.2"
+    credit = f"{' ' * 25}By Abgache\n{' ' * 25}Version: {version}\n"
     print(banner, end="")
     print(credit)
 
@@ -24,7 +25,13 @@ def main():
 
     args = parser.parse_args()
 
-    protocol = "https" if args.port == 443 else "http"
+    if not args.target.startswith("http") and not args.target.startswith("https"):
+        protocol = "https" if args.port == 443 else "http"
+        base = f"{protocol}://{args.target}:{args.port}"
+    elif args.target.startswith("http"):
+        base = f"{args.target}:{args.port}"
+    elif args.target.startswith("https"):
+        base = f"{args.target}:{args.port}"
 
     bad_keywords = [
         "no such file",
@@ -33,8 +40,6 @@ def main():
         "error",
         "warning",
     ]
-
-    base = f"{protocol}://{args.target}:{args.port}"
 
     print(f"[*] Target: {base}")
 
