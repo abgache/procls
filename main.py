@@ -8,11 +8,10 @@ def print_banner():
      | |__) | __ ___   ___| |    | (___  
      |  ___/ '__/ _ \ / __| |     \___ \ 
      | |   | | | (_) | (__| |____ ____) |
-     |_|   |_|  \___/ \___|______|_____/
-         """
+     |_|   |_|  \___/ \___|______|_____/"""
     version = "1.0.2"
-    credit = f"{' ' * 25}By Abgache\n{' ' * 25}Version: {version}\n"
-    print(banner, end="")
+    credit = f"{' ' * 34}By Abgache\n{' ' * 34}Version: {version}\n"
+    print(banner)
     print(credit)
 
 def main():
