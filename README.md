@@ -13,10 +13,16 @@ It's a simple python that:
 ---
 
 ## How to use it?
-Download:```git clone https://github.com/abgache/procls.git
-cd procls
-pip install -r requirements.txt```  
-Usage: ```procls <target> [-p PORT] [-s PATH] [--max MAX] [--param PARAM]```  
+**Download:**  
+```bash  
+git clone https://github.com/abgache/procls.git  
+cd procls  
+pip install -r requirements.txt  
+```  
+**Usage:** 
+```bash
+procls <target> [-p PORT] [-s PATH] [--max MAX] [--param PARAM]
+```  
 
 ---
 
