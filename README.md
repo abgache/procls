@@ -19,6 +19,9 @@ sudo cd /usr/share
 sudo git clone https://github.com/abgache/procls.git  
 sudo cd procls  
 sudo pip install -r requirements.txt  
+chmod 555 /usr/share/procls/main.py  
+chmod 555 /usr/share/procls/bin/procls  
+chmod 555 /usr/share/procls/bin/procls-update  
 sudo echo 'export PATH="$PATH:/usr/share/procls/bin"' >> ~/.profile  
 ```  
 
