@@ -1,6 +1,6 @@
 # ProcLS
 ### The first program you should launch after finding an LFI.
-### Version : ``1.1.1``
+### Version : ``1.2.0``
 
 [![Python](https://img.shields.io/badge/python-3.10%2B-blue)](https://www.python.org/)  
 
@@ -15,14 +15,23 @@ It's a simple python that:
 ## How to use it?
 **Download:**  
 ```bash  
-git clone https://github.com/abgache/procls.git  
-cd procls  
-pip install -r requirements.txt  
+sudo cd /usr/share  
+sudo git clone https://github.com/abgache/procls.git  
+sudo cd procls  
+sudo pip install -r requirements.txt  
+sudo echo 'export PATH="$PATH:/usr/share/procls/bin"' >> ~/.profile  
 ```  
+
 **Usage:** 
 ```bash
 procls <target> [-p PORT] [-s PATH] [--max MAX] [--param PARAM]
 ```  
+**Update:**
+```bash
+procls-update
+```
+> [WARNING]
+> If you get errors after updating, please re-run the updater and install pip dependencies.
 
 ---
 

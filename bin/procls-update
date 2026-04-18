@@ -1,0 +1,10 @@
+#!/bin/bash
+sudo rm main.py
+sudo rm README.md
+sudo rm requirements.txt
+sudo rm update
+wget https://github.com/abgache/procls/raw/refs/heads/main/main.py -O main.py
+wget https://github.com/abgache/procls/raw/refs/heads/main/README.md -O README.md
+wget https://github.com/abgache/procls/raw/refs/heads/main/requirements.txt -O requirements.txt
+wget https://github.com/abgache/procls/raw/refs/heads/main/update -O update
+echo "For compatibility reasons, requirements.txt is not automatically installed, I you get any error when running ProcLS try running pip install -r requirements.txt"

@@ -12,7 +12,7 @@ def print_banner():
      |  ___/ '__/ _ \ / __| |     \___ \ 
      | |   | | | (_) | (__| |____ ____) |
      |_|   |_|  \___/ \___|______|_____/"""
-    version = "1.1.1"
+    version = "1.2.0"
     credit = f"{' ' * 34}By Abgache\n{' ' * 34}Version: {version}\n"
     print(banner)
     print(credit)
