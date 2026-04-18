@@ -30,7 +30,7 @@ procls <target> [-p PORT] [-s PATH] [--max MAX] [--param PARAM]
 ```bash
 procls-update
 ```
-> [WARNING]
+> [!WARNING]
 > If you get errors after updating, please re-run the updater and install pip dependencies.
 
 ---
