@@ -1,10 +1,17 @@
 #!/bin/bash
-sudo rm main.py
-sudo rm README.md
-sudo rm requirements.txt
-sudo rm update
-wget https://github.com/abgache/procls/raw/refs/heads/main/main.py -O main.py
-wget https://github.com/abgache/procls/raw/refs/heads/main/README.md -O README.md
-wget https://github.com/abgache/procls/raw/refs/heads/main/requirements.txt -O requirements.txt
-wget https://github.com/abgache/procls/raw/refs/heads/main/update -O update
+echo "Updating ProcLS in /usr/share/procls ..."
+sudo rm /usr/share/procls/main.py
+sudo rm /usr/share/procls/README.md
+sudo rm /usr/share/procls/requirements.txt
+sudo rm /usr/share/procls/bin/procls
+wget https://github.com/abgache/procls/raw/refs/heads/main/main.py -O /usr/share/procls/main.py
+wget https://github.com/abgache/procls/raw/refs/heads/main/README.md -O /usr/share/procls/README.md
+wget https://github.com/abgache/procls/raw/refs/heads/main/requirements.txt -O /usr/share/procls/requirements.txt
+wget https://github.com/abgache/procls/raw/refs/heads/main/bin/procls -O /usr/share/procls/bin/procls
+wget https://github.com/abgache/procls/raw/refs/heads/main/bin/procls-update -O /usr/share/procls/bin/procls-update
+chmod 555 /usr/share/procls/main.py
+chmod 444 /usr/share/procls/README.md
+chmod 444 /usr/share/procls/requirements.txt
+chmod 555 /usr/share/procls/bin/procls
+chmod 555 /usr/share/procls/bin/procls-update
 echo "For compatibility reasons, requirements.txt is not automatically installed, I you get any error when running ProcLS try running pip install -r requirements.txt"
