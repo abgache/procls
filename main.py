@@ -78,15 +78,15 @@ if __name__ == "__main__":
     try:
         main()
     except KeyboardInterrupt:
-        print(f"{Fore.YELLOW}[*]{Style.RESET_ALL} Ctrl+C detected! Leaving... ")
+        print(f"\n{Fore.YELLOW}[*]{Style.RESET_ALL} Ctrl+C detected! Leaving... ")
         exit(0)
     except requests.exceptions.Timeout:
         try:
             r = requests.get("http://8.8.8.8", timeout=3)
-            print(f"{Fore.RED}[-]{Style.RESET_ALL} The host is not responding, the host is most likely down.")
+            print(f"\n{Fore.RED}[-]{Style.RESET_ALL} The host is not responding, the host is most likely down.")
         except:
-            print(f"{Fore.RED}[-]{Style.RESET_ALL} The host is not responding, please check your internet connection.")
+            print(f"\n{Fore.RED}[-]{Style.RESET_ALL} The host is not responding, please check your internet connection.")
     except requests.RequestException as e:
-        print(f"{Fore.RED}[-]{Style.RESET_ALL} Request error: {e}")
+        print(f"\n{Fore.RED}[-]{Style.RESET_ALL} Request error: {e}")
     except Exception as e:
-        print(f"{Fore.RED}[-]{Style.RESET_ALL} Unexpected error: {e}")
+        print(f"\n{Fore.RED}[-]{Style.RESET_ALL} Unexpected error: {e}")
