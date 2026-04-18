@@ -12,7 +12,7 @@ def print_banner():
      |  ___/ '__/ _ \ / __| |     \___ \ 
      | |   | | | (_) | (__| |____ ____) |
      |_|   |_|  \___/ \___|______|_____/"""
-    version = "1.1.0"
+    version = "1.1.1"
     credit = f"{' ' * 34}By Abgache\n{' ' * 34}Version: {version}\n"
     print(banner)
     print(credit)
@@ -75,4 +75,18 @@ def main():
 
 if __name__ == "__main__":
     print_banner()
-    main()
+    try:
+        main()
+    except KeyboardInterrupt:
+        print(f"{Fore.YELLOW}[*]{Style.RESET_ALL} Ctrl+C detected! Leaving... ")
+        exit(0)
+    except requests.exceptions.Timeout:
+        try:
+            r = requests.get("http://8.8.8.8", timeout=3)
+            print(f"{Fore.RED}[-]{Style.RESET_ALL} The host is not responding, the host is most likely down.")
+        except:
+            print(f"{Fore.RED}[-]{Style.RESET_ALL} The host is not responding, please check your internet connection.")
+    except requests.RequestException as e:
+        print(f"{Fore.RED}[-]{Style.RESET_ALL} Request error: {e}")
+    except Exception as e:
+        print(f"{Fore.RED}[-]{Style.RESET_ALL} Unexpected error: {e}")
