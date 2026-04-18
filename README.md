@@ -1,6 +1,6 @@
 # ProcLS
 ### The first program you should launch after finding an LFI.
-### Version : ``1.2.0``
+### Version : ``1.3.0``
 
 [![Python](https://img.shields.io/badge/python-3.10%2B-blue)](https://www.python.org/)  
 
@@ -8,6 +8,7 @@
 It's a simple python that:  
 - Checks that the LFI is working : it tries to get ``/etc/passwd`` and checks that it starts with ``root:x:``  
 - Shows the target system version : it simply prints ``/proc/version``  
+- List all "real" users from ``/etc/passwd`` (the ones in /home/*)  
 - List ``/proc/*`` processes (The most interesting part)  
 
 ---

