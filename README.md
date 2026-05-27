@@ -1,6 +1,6 @@
 # ProcLS
 ### The first program you should launch after finding an LFI.
-### Version : ``1.3.1``
+### Version : ``1.4.0``
 
 [![Python](https://img.shields.io/badge/python-3.10%2B-blue)](https://www.python.org/)  
 

