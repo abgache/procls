@@ -42,7 +42,7 @@ def main():
     parser.add_argument("--max", default=1000, type=int)
     parser.add_argument("--param", default="file", help="LFI parameter name")
     parser.add_argument("--path-starting", default="file", help="LFI parameter starting point (example: file://)")
-    parser.add_argument("--path-ending", default="file", help="LFI parameter ending point (example: %23 for #)")
+    parser.add_argument("--path-ending", default="file", help="LFI parameter ending point (example: *percent_sign*23 for #)")
 
     args = parser.parse_args()
 
